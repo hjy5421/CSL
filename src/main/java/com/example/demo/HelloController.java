@@ -13,6 +13,6 @@ public class HelloController {
 
     @GetMapping("/obj")
     public TestObj obj() {
-        return new TestObj(12, "Tester");
+        return new TestObj(12, "Tester", "Tester Description");
     }
 }
