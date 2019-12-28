@@ -1,4 +1,4 @@
-package com.example.demo.merchandise;
+package com.example.demo.category;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,7 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Merchandise {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,11 +21,4 @@ public class Merchandise {
 
     @Column
     private String name;
-
-    @Column
-    private String description;
-
-    @Column int price;
-
-    @Column long category;
 }
