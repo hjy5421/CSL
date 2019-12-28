@@ -1,7 +1,14 @@
 package com.example.demo;
 
+import lombok.var;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.MediaType;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @RestController
 public class HelloController {
@@ -14,5 +21,20 @@ public class HelloController {
     @GetMapping("/obj")
     public TestObj obj() {
         return new TestObj(12, "Tester", "Tester Description");
+    }
+
+//    @GetMapping(value = "/image", produces = MediaType.IMAGE_JPEG_VALUE)
+//    public @ResponseBody byte[] getImageWithMediaType() throws IOException {
+//        InputStream in = getClass().getResourceAsStream("resources/test_image.jpg");
+//        return IOUtils.toByteArray(in);
+//    }
+
+    @GetMapping(value = "/image", produces = MediaType.IMAGE_JPEG_VALUE)
+    public void getImage(HttpServletResponse response) throws IOException {
+        var imageFile = new ClassPathResource("images/test_image.jpg");
+
+        response.setContentType(MediaType.IMAGE_JPEG_VALUE);
+        StreamUtils.copy(imageFile.getInputStream(), response.getOutputStream());
+
     }
 }

@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface InterestRepository extends JpaRepository<Interest, Long> {
     List<Interest> findAllByMemberId(long memberId);
+    List<Interest> findAllByMerchandiseId(long merchandiseId);
 }
