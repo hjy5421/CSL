@@ -23,12 +23,6 @@ public class HelloController {
         return new TestObj(12, "Tester", "Tester Description");
     }
 
-//    @GetMapping(value = "/image", produces = MediaType.IMAGE_JPEG_VALUE)
-//    public @ResponseBody byte[] getImageWithMediaType() throws IOException {
-//        InputStream in = getClass().getResourceAsStream("resources/test_image.jpg");
-//        return IOUtils.toByteArray(in);
-//    }
-
     @GetMapping(value = "/image", produces = MediaType.IMAGE_JPEG_VALUE)
     public void getImage(HttpServletResponse response) throws IOException {
         var imageFile = new ClassPathResource("images/test_image.jpg");
@@ -37,4 +31,6 @@ public class HelloController {
         StreamUtils.copy(imageFile.getInputStream(), response.getOutputStream());
 
     }
+
+
 }

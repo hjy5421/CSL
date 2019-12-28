@@ -8,5 +8,7 @@ import java.util.List;
 @Repository
 public interface MerchandiseRepository extends JpaRepository<Merchandise, Long> {
     Merchandise findById(long id);
-    List<Merchandise> findAllByCategory(long category);
+    List<Merchandise> findAllByMajor(String major);
+    List<Merchandise> findAllByMajorAndSub(String major, String sub);
+    List<Merchandise> findAllByMember(String member);
 }

@@ -17,12 +17,27 @@ public class MerchandiseController {
     //}
 
     /*
-    카테고리 ID를 이용한 게시글 검색
+    대분류를 이용한 게시글 검색
      */
-    @GetMapping("/merchandise/{category}")
-    public List<Merchandise> readMerchandisesByCategory(@PathVariable long category) {
-        return merchandiseRepository.findAllByCategory(category);
+    @GetMapping("/merchandise/{major}")
+    public List<Merchandise> readMerchandisesByMajor(@PathVariable String major) {
+        return merchandiseRepository.findAllByMajor(major);
+    }
 
+    /*
+    대분류와 소분류를 이용한 게시글 검색
+     */
+    @GetMapping("/merchandise/{major}/{sub}")
+    public List<Merchandise> readMerchandisesByMajorAndSub(@PathVariable String major, @PathVariable String sub) {
+        return merchandiseRepository.findAllByMajorAndSub(major, sub);
+    }
+
+    /*
+    사용자를 이용한 게시글 검색
+     */
+    @GetMapping("/merchandise/member/{member}")
+    public List<Merchandise> readMerchandiseByMember(@PathVariable String member) {
+        return merchandiseRepository.findAllByMember(member);
     }
 
     /*

@@ -42,8 +42,7 @@ public class MemberController {
     - 실패시 NULL
      */
     @PostMapping("/member/login")
-    public Member loginMember(@RequestBody LoginDTO loginDTO) {
-
-        return memberRepository.findByUsernameAndPassword(loginDTO.getUsername(), loginDTO.getPassword());
+    public Member loginMember(@RequestBody Member member) {
+        return memberRepository.findByUsernameAndPassword(member.getUsername(), member.getPassword());
     }
 }

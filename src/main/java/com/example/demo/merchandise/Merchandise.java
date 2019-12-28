@@ -20,12 +20,20 @@ public class Merchandise {
     private long id;
 
     @Column
+    private String member;
+
+    @Column
     private String name;
 
     @Column
     private String description;
 
-    @Column int price;
+    @Column
+    private int price;
 
-    @Column long category;
+    @Column
+    private String major;
+
+    @Column
+    private String sub;
 }
