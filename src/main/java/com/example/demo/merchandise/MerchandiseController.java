@@ -36,8 +36,8 @@ public class MerchandiseController {
     사용자를 이용한 게시글 검색
      */
     @GetMapping("/merchandise/member/{member}")
-    public List<Merchandise> readMerchandiseByMember(@PathVariable String member) {
-        return merchandiseRepository.findAllByMember(member);
+    public List<Merchandise> readMerchandiseByMember(@PathVariable String user) {
+        return merchandiseRepository.findAllByUser(user);
     }
 
     /*

@@ -10,5 +10,5 @@ public interface MerchandiseRepository extends JpaRepository<Merchandise, Long> 
     Merchandise findById(long id);
     List<Merchandise> findAllByMajor(String major);
     List<Merchandise> findAllByMajorAndSub(String major, String sub);
-    List<Merchandise> findAllByMember(String member);
+    List<Merchandise> findAllByUser(String user);
 }

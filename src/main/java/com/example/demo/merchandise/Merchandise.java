@@ -20,7 +20,7 @@ public class Merchandise {
     private long id;
 
     @Column
-    private String member;
+    private String user;
 
     @Column
     private String name;
