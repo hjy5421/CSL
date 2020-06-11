@@ -23,5 +23,8 @@ public class Interest {
     private long merchandiseId;
 
     @Column
-    private long memberId;
+    private long userId;
+
+    @Column
+    private float prefer;
 }

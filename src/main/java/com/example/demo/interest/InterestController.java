@@ -14,9 +14,9 @@ public class InterestController {
     /*
     사용자 PK값을 이용한 관심 검색
      */
-    @GetMapping("/interest/member/{id}")
-    public List<Interest> readInterestByMember(@PathVariable long id) {
-        return interestRepository.findAllByMemberId(id);
+    @GetMapping("/interest/user/{id}")
+    public List<Interest> readInterestByUser(@PathVariable long id) {
+        return interestRepository.findAllByUserId(id);
     }
 
     /*

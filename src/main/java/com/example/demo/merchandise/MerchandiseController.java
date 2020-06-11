@@ -33,10 +33,18 @@ public class MerchandiseController {
     }
 
     /*
+    검색어를 포함한 게시글 검색
+     */
+    @GetMapping("/merchandise/name/{name}")
+    public List<Merchandise> readMerchandiseByName(@PathVariable String name,Merchandise merchandise){
+        return merchandiseRepository.findAllByNameContaining(name);
+    }
+
+    /*
     사용자를 이용한 게시글 검색
      */
-    @GetMapping("/merchandise/member/{member}")
-    public List<Merchandise> readMerchandiseByMember(@PathVariable String user) {
+    @GetMapping("/merchandise/user/{user}")
+    public List<Merchandise> readMerchandiseByUser(@PathVariable String user) {
         return merchandiseRepository.findAllByUser(user);
     }
 

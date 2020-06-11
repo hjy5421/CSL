@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Service
-public class MahoutService {
+public class MahoutTestService {
 
     public void testMahout() throws TasteException, IOException {
         DataModel model=new FileDataModel(new File("C:\\Users\\User\\IdeaProjects\\CSL\\src\\main\\resources\\intro.csv"));
@@ -32,6 +32,7 @@ public class MahoutService {
             //logger.info(String.valueOf(recommendation));
         }
     }
+
 
 
 

@@ -13,7 +13,7 @@ public class UserController {
     JSON을 이용한 사용자 등록
      */
     @PostMapping("/user")
-    public User createMember(@RequestBody User user) {
+    public User createUser(@RequestBody User user) {
         return userRepository.save(user);
     }
 
@@ -21,10 +21,9 @@ public class UserController {
     JSON을 이용한 사용자 수정
      */
     @PostMapping("/user/{id}")
-    public User updateMember(@RequestBody User user, @PathVariable long id) {
+    public User updateUser(@RequestBody User user, @PathVariable long id) {
         User origin = userRepository.findById(id);
         origin = user;
-
         return userRepository.save(origin);
     }
 
@@ -32,7 +31,7 @@ public class UserController {
     PK값을 통한 사용자 조회
      */
     @GetMapping("/user/{id}")
-    public User readMember(@PathVariable long id) {
+    public User readUser(@PathVariable long id) {
         return userRepository.findById(id);
     }
 
@@ -42,7 +41,7 @@ public class UserController {
     - 실패시 NULL
      */
     @PostMapping("/user/login")
-    public User loginMember(@RequestBody User user) {
+    public User loginUser(@RequestBody User user) {
         return userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
     }
 }
