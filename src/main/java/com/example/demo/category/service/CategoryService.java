@@ -5,7 +5,6 @@ import com.example.demo.category.model.SubCategory;
 import com.example.demo.category.model.input.InputCategory;
 import com.example.demo.category.repository.MajorRepository;
 import com.example.demo.category.repository.SubRepository;
-import jdk.internal.loader.AbstractClassLoaderValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
