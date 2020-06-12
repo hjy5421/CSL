@@ -1,4 +1,4 @@
-package com.example.demo.mahout;
+package com.example.demo.recommend;
 
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.recommender.RecommendedItem;
@@ -10,12 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class MahoutController {
+public class RecommendController {
     @Autowired
-    private MahoutService mahoutService;
+    private RecommendService recommendService;
 
+    /*
+    mahout을 이용해 사용자에게 추천
+     */
     @GetMapping("/mahout/{userId}")
-    public List<RecommendedItem> recommendForUser(@PathVariable Long userId) throws TasteException {
-        return mahoutService.recommend(userId);
+    public List<Recommend> recommendForUser(@PathVariable Long userId) throws TasteException {
+        return recommendService.recommend(userId);
     }
 }

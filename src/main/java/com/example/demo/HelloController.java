@@ -41,8 +41,6 @@ public class HelloController {
     public String uploadImage(MultipartHttpServletRequest request) throws Exception{
         MultipartFile file=request.getFile("file");
         String filePath="C:\\Users\\User\\IdeaProjects\\CSL\\src\\main\\resources\\images\\";
-        //byte[] date=file.getBytes();
-        //MultipartFile file = mtf.getFile(fileTag);
         String fileName = file.getOriginalFilename();
         // 파일 전송
         try {

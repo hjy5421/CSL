@@ -15,14 +15,26 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping("/category/{major}")
-    public List<SubCategory> readSubByMajor(@PathVariable String major){
+    /*
+    해당 major의 sub 검색
+     */
+    @GetMapping("/category/sub/{major}")
+    public List<String> readSubByMajor(@PathVariable String major){
         return categoryService.readSubByMajor(major);
     }
 
+    /*
+    major 검색
+     */
+    @GetMapping("/category/major")
+    public List<String> readByMajor(){
+        return categoryService.readByMajor();
+    }
+
     @PostMapping("/category")
-    public void createCategory(@RequestBody InputCategory inputCategory){
+    public InputCategory createCategory(@RequestBody InputCategory inputCategory){
         categoryService.createCategory(inputCategory);
+        return inputCategory;
     }
 
     /*

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoryService {
@@ -20,8 +21,16 @@ public class CategoryService {
     SubRepository subRepository;
 
     public void createCategory(InputCategory inputCategory){
+        //major에 이미 있는지 확인
+        boolean majorExist=majorRepository.existsByMajorEquals(inputCategory.getMajor());
+        System.out.println(majorExist);
+
         MajorCategory majorCategory=new MajorCategory();
-        majorCategory.setMajor(inputCategory.getMajor());
+        if(majorExist==false){
+            majorCategory.setMajor(inputCategory.getMajor());
+        }else{
+            majorCategory=majorRepository.findDistinctByMajor(inputCategory.getMajor());
+        }
 
         SubCategory subCategory=new SubCategory();
         subCategory.setSub(inputCategory.getSub());
@@ -32,7 +41,16 @@ public class CategoryService {
         majorRepository.save(majorCategory);
     }
 
-    public List<SubCategory> readSubByMajor(String major){
-        return majorRepository.findAllByMajor(major);
+    public List<String> readSubByMajor(String major){
+        MajorCategory majorCategory=majorRepository.findDistinctByMajor(major);
+        List<SubCategory> subCategories=majorCategory.getSubs();
+        List<String> subs=subCategories.stream().map(subCategory -> {return subCategory.getSub();}).collect(Collectors.toList());
+        return subs;
+    }
+
+    public List<String> readByMajor(){
+        List<MajorCategory> majorCategories=majorRepository.findAll();
+        List<String> majors=majorCategories.stream().map(majorCategory -> {return majorCategory.getMajor();}).collect(Collectors.toList());
+        return majors;
     }
 }
