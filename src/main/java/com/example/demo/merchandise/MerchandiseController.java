@@ -56,6 +56,14 @@ public class MerchandiseController {
     public List<Merchandise> readMerchandiseByUser(@PathVariable String user) {
         return merchandiseRepository.findAllByUser(user);
     }
+
+    /*
+    PK값을 이용한 게시글 검색
+     */
+    @GetMapping("/merchandise/id/{id}")
+    public Merchandise readMerchandiseById(@PathVariable long id){
+        return merchandiseRepository.findById(id);
+    }
     
     /*
     JSON을 이용한 게시글 등록
@@ -66,7 +74,7 @@ public class MerchandiseController {
     }
 
     /*
-    상품
+    상품이미지 업로드
      */
     @PostMapping("/merchandise/image/upload")
     public String uploadImage(MultipartHttpServletRequest request) throws Exception{
@@ -84,6 +92,9 @@ public class MerchandiseController {
         return imgURL;
     }
 
+    /*
+    상품이미지 갖고오기
+     */
     @GetMapping(value = "/merchandise/image/{imgName}", produces = MediaType.IMAGE_JPEG_VALUE)
     public void getImage(@PathVariable String imgName, HttpServletResponse response) throws IOException {
         String imgPath="images/"+imgName;

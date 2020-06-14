@@ -33,7 +33,7 @@ public class RecommendService {
         UserSimilarity similarity=new PearsonCorrelationSimilarity(dataModel);
         UserNeighborhood neighborhood=new ThresholdUserNeighborhood(0,similarity,dataModel);
         UserBasedRecommender recommender=new GenericUserBasedRecommender(dataModel,neighborhood,similarity);
-        List<RecommendedItem> recommendedItems=recommender.recommend(userId,1);
+        List<RecommendedItem> recommendedItems=recommender.recommend(userId,5);
 
         List<Recommend> recommends=new ArrayList<>();
         for(RecommendedItem recommendedItem:recommendedItems){

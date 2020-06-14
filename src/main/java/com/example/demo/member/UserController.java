@@ -1,5 +1,6 @@
 package com.example.demo.member;
 
+import com.example.demo.member.model.InputUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,46 @@ public class UserController {
         User origin = userRepository.findById(id);
         origin = user;
         log.info(String.valueOf(origin.getId()));
+        return userRepository.save(origin);
+    }
+
+    /*
+    PK값을 통한 nickname 변경
+     */
+    @PostMapping("/user/nickname/{id}")
+    public User updateNicknameById(@PathVariable long id, @RequestBody InputUser inputUser){
+        User origin=userRepository.findById(id);
+        origin.setNickname(inputUser.getChange());
+        return userRepository.save(origin);
+    }
+
+    /*
+    PK값을 이용한 phone 변경
+     */
+    @PostMapping("/user/phone/{id}")
+    public User updatePhoneById(@PathVariable long id, @RequestBody InputUser inputUser){
+        User origin=userRepository.findById(id);
+        origin.setPhone(inputUser.getChange());
+        return userRepository.save(origin);
+    }
+
+    /*
+    PK값을 이용한 shopname 변경
+     */
+    @PostMapping("/user/shopname/{id}")
+    public User updateShopnameById(@PathVariable long id, @RequestBody InputUser inputUser){
+        User origin=userRepository.findById(id);
+        origin.setShopname(inputUser.getChange());
+        return userRepository.save(origin);
+    }
+
+    /*
+    PK값을 이용한 shopdes 변경
+     */
+    @PostMapping("/user/shopdes/{id}")
+    public User updateShopdesById(@PathVariable long id, @RequestBody InputUser inputUser){
+        User origin=userRepository.findById(id);
+        origin.setShopdes(inputUser.getChange());
         return userRepository.save(origin);
     }
 
