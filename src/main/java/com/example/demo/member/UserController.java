@@ -1,8 +1,10 @@
 package com.example.demo.member;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 public class UserController {
 
@@ -24,6 +26,7 @@ public class UserController {
     public User updateUser(@RequestBody User user, @PathVariable long id) {
         User origin = userRepository.findById(id);
         origin = user;
+        log.info(String.valueOf(origin.getId()));
         return userRepository.save(origin);
     }
 

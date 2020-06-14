@@ -1,8 +1,17 @@
 package com.example.demo.merchandise;
 
+import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.MediaType;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -47,7 +56,7 @@ public class MerchandiseController {
     public List<Merchandise> readMerchandiseByUser(@PathVariable String user) {
         return merchandiseRepository.findAllByUser(user);
     }
-
+    
     /*
     JSON을 이용한 게시글 등록
      */
@@ -55,4 +64,34 @@ public class MerchandiseController {
     public Merchandise createMerchandise(@RequestBody Merchandise merchandise) {
         return merchandiseRepository.save(merchandise);
     }
+
+    /*
+    상품
+     */
+    @PostMapping("/merchandise/image/upload")
+    public String uploadImage(MultipartHttpServletRequest request) throws Exception{
+        MultipartFile file=request.getFile("file");
+        // String filePath="C:\\Users\\User\\IdeaProjects\\CSL\\src\\main\\resources\\images\\";
+        String filePath="\\home\\ubuntu\\CSL\\src\\main\\resources\\images\\";
+        String fileName = file.getOriginalFilename();
+        String imgURL = filePath + fileName;
+        // 파일 전송
+      try {
+            file.transferTo(new File(imgURL));
+        } catch(Exception e) {
+            System.out.println("업로드 오류");
+        }
+        return imgURL;
+    }
+
+    @GetMapping(value = "/merchandise/image/{imgName}", produces = MediaType.IMAGE_JPEG_VALUE)
+    public void getImage(@PathVariable String imgName, HttpServletResponse response) throws IOException {
+        String imgPath="images/"+imgName;
+        var imageFile = new ClassPathResource(imgPath);
+
+        response.setContentType(MediaType.IMAGE_JPEG_VALUE);
+        StreamUtils.copy(imageFile.getInputStream(), response.getOutputStream());
+    }
+
+
 }

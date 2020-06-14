@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 
@@ -36,4 +37,7 @@ public class Merchandise {
 
     @Column
     private String sub;
+
+    @Column
+    private String imgUrl;
 }
